@@ -29,12 +29,12 @@ async def createemoji(ctx, url: str, *, name):
 				except discord.HTTPException:
 					await ctx.send('File size is too big!')
 
-
-
-
-
-
-
+@client.command()
+async def deleteemoji(ctx, emoji: discord.Emoji):
+	guild = ctx.guild
+	if ctx.author.guild_permissions.manage_emojis:
+		await ctx.send(f'Successfully deleted (or not): {emoji}')
+		await emoji.delete()
 
 
 
