@@ -21,8 +21,10 @@ async def createemoji(ctx, url: str, *, name):
 					if r.status in range(200, 299):
 						emoji = await guild.create_custom_emoji(image=b_value, name=name)
 						await ctx.send(f'Successfully created emoji: <:{name}:{emoji.id}>')
+						await ses.close()
 					else:
 						await ctx.send(f'Error when making request | {r.status} response.')
+						await ses.close()
 						
 				except discord.HTTPException:
 					await ctx.send('File size is too big!')
